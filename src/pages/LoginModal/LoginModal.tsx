@@ -1,12 +1,26 @@
 // components/LoginModal.tsx
 import React from 'react';
 import { UserIcon, LockClosedIcon } from '@heroicons/react/24/outline';
+import { useAuth } from '../../context/AuthContext';
+
 
 interface LoginModalProps {
     onClose: () => void;
 }
 
 const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
+
+
+    const { login } = useAuth();
+    const fakeLogin = () => {
+        const user = {
+            name: 'Max Mustermann',
+            role: 'Student',
+        };
+        login(user);
+        onClose();
+    };
+
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
             <div className="bg-white rounded-lg shadow-lg w-80 p-6 relative">
@@ -30,7 +44,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ onClose }) => {
                     <input type="password" placeholder="********" className="bg-transparent flex-1 outline-none text-sm" />
                 </div>
 
-                <button className="w-full text-white py-2 rounded-lg hover:bg-blue-800" style={{backgroundColor: 'rgb(37,58,103)'}}>
+                <button className="w-full text-white py-2 rounded-lg hover:bg-blue-800" style={{backgroundColor: 'rgb(37,58,103)'}} onClick={fakeLogin}>
                     Anmelden
                 </button>
             </div>
