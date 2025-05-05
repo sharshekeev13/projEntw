@@ -1,6 +1,6 @@
 // components/ProjectCard.tsx
 import React from 'react';
-import graduationCap from '../../assets/vector-cap.png';
+import graduationCap from '../../assets/landing/vector-cap.png';
 import { Project } from '../../types/Project';
 
 interface ProjectCardProps {

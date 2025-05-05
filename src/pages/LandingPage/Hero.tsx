@@ -1,6 +1,6 @@
 import React from 'react';
-import backgroundImage from '../../assets/background-image.png'; // ✅
-import graduationCap from '../../assets/graduation-cap.svg';
+import backgroundImage from '../../assets/landing/background-image.png'; // ✅
+import graduationCap from '../../assets/landing/graduation-cap.svg';
 
 const Hero: React.FC = () => {
     return (

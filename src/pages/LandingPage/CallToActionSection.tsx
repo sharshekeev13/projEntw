@@ -1,6 +1,6 @@
 // components/CallToActionSection.tsx
 import React from 'react';
-import backgroundImage from '../../assets/library.png'; 
+import backgroundImage from '../../assets/landing/library.png'; 
 
 const CallToActionSection: React.FC = () => {
   return (

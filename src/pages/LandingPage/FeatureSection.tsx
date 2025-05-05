@@ -3,10 +3,10 @@ import React from 'react';
 import FeatureCard from './FeatureCard';
 import { Feature } from '../../types/Feature';
 
-import bookImg from '../../assets/book.png';
-import graduateImg from '../../assets/graduate.png';
-import calendarImg from '../../assets/calendar-ts.png';
-import magnifierImg from '../../assets/magnifier.png';
+import bookImg from '../../assets/landing/book.png';
+import graduateImg from '../../assets/landing/graduate.png';
+import calendarImg from '../../assets/landing/calendar-ts.png';
+import magnifierImg from '../../assets/landing/magnifier.png';
 
 const features: Feature[] = [
   { id: 1, image: bookImg, title: 'Archivierte Dissertationen ansehen' },
