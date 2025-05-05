@@ -1,9 +1,8 @@
-// components/Header.tsx
 import React from 'react';
-import Logo from '../assets/logo_whz.svg'; // Adjust the path as necessary
+import Logo from '../assets/logo_whz.svg'; 
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react'; // Иконки (или свои SVG)
-import { useAuth } from '../context/AuthContext'; // Import your AuthContext
+import { Menu, X } from 'lucide-react'; 
+import { useAuth } from '../context/AuthContext'; 
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -14,7 +13,7 @@ const Header: React.FC = () => {
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <img src={Logo} alt="WHZ Logo" className="h-8 w-32" />
+          <img src={Logo} alt="WHZ Logo" className="h-12 w-32" />
         </div>
 
         {/* Desktop Navigation */}
