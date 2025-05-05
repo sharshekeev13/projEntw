@@ -1,7 +1,7 @@
 // components/FeatureCard.tsx
 import React from 'react';
 import { Feature } from '../../types/Feature';
-import triangle from '../../assets/triangle-pattern.png'; 
+import triangle from '../../assets/landing/triangle-pattern.png'; 
 
 interface FeatureCardProps {
   feature: Feature;
