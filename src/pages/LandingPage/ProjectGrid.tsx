@@ -56,7 +56,7 @@ const mockProjects: Project[] = [
 
 const ProjectGrid: React.FC = () => {
     return (
-        <div className="px-36 py-24">
+        <div className="px-4 sm:px-8 md:px-16 lg:px-36 py-24">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 {mockProjects.map((project) => (
                     <ProjectCard key={project.id} project={project} />

@@ -3,6 +3,8 @@ import Hero from './Hero';
 import SearchBar from './SearchBar';
 import ProjectGrid from './ProjectGrid';
 import BenefitSection from './BenefitSection';
+import FeatureSection from './FeatureSection';
+import CallToActionSection from './CallToActionSection';
 
 const LandingPage: React.FC = () => {
   return (
@@ -11,6 +13,8 @@ const LandingPage: React.FC = () => {
         <SearchBar />
         <ProjectGrid />
         <BenefitSection />
+        <FeatureSection />
+        <CallToActionSection />
     </div>
   );
 };
