@@ -1,21 +1,24 @@
-// components/Header.tsx
 import React from 'react';
-import Logo from '../assets/logo_whz.svg'; // Adjust the path as necessary
+import Logo from '../assets/logo_whz.svg';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react'; // Иконки (или свои SVG)
 import { useAuth } from '../context/AuthContext'; // Import your AuthContext
 import { Link } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
+import LoginModal from '../pages/LoginModal/LoginModal';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user } = useAuth();
+  const [showLoginModal, setShowLoginModal] = useState(false);
 
   return (
     <header className="w-full shadow-md bg-white border-b border-gray-200">
       <div className="max-w-screen-xl mx-auto flex items-center justify-between px-4 py-3">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <img src={Logo} alt="WHZ Logo" className="h-8 w-32" />
+          <img src={Logo} alt="WHZ Logo" className="h-12 w-32" />
         </div>
 
         {/* Desktop Navigation */}
@@ -32,10 +35,19 @@ const Header: React.FC = () => {
             <span className="absolute -bottom-1 left-0 w-0 transition-all duration-300 h-0.5 bg-primary group-hover:w-full"></span>
           </Link>          
           ) : (
-            <a key="Login" href="#" className="group relative w-max text-sm">
+            <a
+              key="Login"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                setShowLoginModal(true);
+              }}
+              className="group relative w-max text-sm"
+            >
               <span className="hover:text-primary transition duration-300">Login</span>
               <span className="absolute -bottom-1 left-0 w-0 transition-all duration-300 h-0.5 bg-primary group-hover:w-full"></span>
             </a>
+
           )}
         </nav>
 
@@ -60,7 +72,11 @@ const Header: React.FC = () => {
           </nav>
         </div>
       )}
+
+      {showLoginModal && <LoginModal onClose={() => setShowLoginModal(false)} />}
+
     </header>
+
   );
 };
 
