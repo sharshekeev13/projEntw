@@ -1,4 +1,3 @@
-import React from "react";
 import FilterSidebar from "./components/FilterSidebar";
 import DefenseCard from "./components/DefenseCard";
 import Pagination from "./components/Pagination";
