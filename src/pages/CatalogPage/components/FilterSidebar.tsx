@@ -39,6 +39,18 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '' }) => {
       </div>
     </div>
 
+    <div className="space-y-2">
+      <label className="block text-sm font-medium">Zeit</label>
+      <div className="flex items-center gap-2">
+        <span className="text-sm w-12">von:</span>
+        <input type="time" className="border rounded w-full px-2 py-1" />
+      </div>
+      <div className="flex items-center gap-2">
+        <span className="text-sm w-12">bis:</span>
+        <input type="time" className="border rounded w-full px-2 py-1" />
+      </div>
+    </div>
+
     <div>
       <label className="block text-sm font-medium">Art der Arbeit</label>
       <select className="border rounded w-full px-2 py-1">
