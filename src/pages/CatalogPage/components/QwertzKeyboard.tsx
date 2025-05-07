@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import Keyboard from 'react-simple-keyboard';
 import { KeyboardReactInterface } from 'react-simple-keyboard/build/interfaces';
 import 'react-simple-keyboard/build/css/index.css';
