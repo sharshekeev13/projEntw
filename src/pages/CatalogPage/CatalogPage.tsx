@@ -15,7 +15,6 @@ import {Keyboard as KeyboardIcon} from "lucide-react"
 function CatalogPage() {
   const [showFilters, setShowFilters] = useState(false);
   const [showKeyboard, setShowKeyboard] = useState(false);
-  const [searchText, setSearchText] = useState("");
   const [input, setInput] = useState("");
   const [layoutName, setLayoutName] = useState<"default" | "shift">("default");
   const keyboardRef = useRef<KeyboardReactInterface | null>(null);
