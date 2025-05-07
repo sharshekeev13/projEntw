@@ -6,6 +6,7 @@ type Defense = {
   student: string;
   supervisor: string;
   room: string;
+  time: string;
 };
 
 const DefenseCard: React.FC<{ defense: Defense }> = ({ defense }) => (
@@ -35,6 +36,10 @@ const DefenseCard: React.FC<{ defense: Defense }> = ({ defense }) => (
       <div>
         <span className="text-grayText text-sm">Raum:</span>
         <h6 className="font-semibold text-gray-800 text-sm">{defense.room}</h6>
+      </div>
+      <div>
+        <span className="text-grayText text-sm">Zeit:</span>
+        <h6 className="font-semibold text-gray-800 text-sm">{defense.time}</h6>
       </div>
     </div>
   </div>

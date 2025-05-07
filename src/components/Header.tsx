@@ -11,8 +11,7 @@ const Header: React.FC = () => {
   const { user } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const headerItems = [
-    { label: 'Startseite', href: '/' },
-    { label: 'Über uns', href: '/#uber-uns' },
+    { label: 'Über uns', href: '/' },
     { label: 'Verteidigungen', href: '/catalog' },
   ];
 
