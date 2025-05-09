@@ -7,6 +7,7 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage'
 import UserDaten from './pages/AccountPage/Account'; 
 import CreateVerteidigung from './pages/VerteidigungPage/CreateVerteidigung'; 
 import LandingPage from './pages/LandingPage/LandingPage'
+import AdminPanelPage from './pages/AdminPanelPage/AdminPanelPage'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/account" element={<UserDaten />} /> {/* ← вот это добавь */}
         <Route path="*" element={<NotFoundPage />} />
         <Route path="/verteidigung-erstellen" element={<CreateVerteidigung />} />
+        <Route path="/admin" element={<AdminPanelPage />} />
       </Routes>
       <Footer />
     </div>
