@@ -10,11 +10,10 @@ import { store } from './store/index.ts'
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <BrowserRouter>
-    <Provider store={store}>
-       <AuthProvider>
+
+    <AuthProvider>
       <App />
     </AuthProvider>
-    </Provider>
     </BrowserRouter>
   </StrictMode>,
 )
