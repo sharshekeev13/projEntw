@@ -1,8 +1,8 @@
-import FilterSidebar from "./components/FilterSidebar";
+import FilterSidebar from "../../components/FilterSidebar";
 import DefenseCard from "./components/DefenseCard";
 import Pagination from "./components/Pagination";
 import { useState } from "react";
-import FloatingButton from "./components/FloatingButton";
+import FloatingButton from "../../components/FloatingButton";
 import { useNavigate } from "react-router-dom";
 import "react-simple-keyboard/build/css/index.css";
 import FindComponent from "../../components/FindComponent";

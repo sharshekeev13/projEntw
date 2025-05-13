@@ -1,5 +1,4 @@
-export interface User {
-    userId: number;
+export interface UserCreate {
     username: string;
     password: string;
     role: string;
