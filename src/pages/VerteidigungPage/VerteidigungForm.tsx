@@ -5,6 +5,7 @@ interface VerteidigungData {
   author: string;
   betreuer: string;
   datum: string;
+  uhrzeit: string; 
   raum: string;
   keywords: string;
   studiengang: string;
@@ -23,6 +24,7 @@ const VerteidigungForm: React.FC<Props> = ({ initialData, onSubmit }) => {
     author: initialData?.author || '',
     betreuer: initialData?.betreuer || '',
     datum: initialData?.datum || '',
+    uhrzeit: initialData?.datum || '',
     raum: initialData?.raum || '',
     keywords: initialData?.keywords || '',
     studiengang: initialData?.studiengang || '',
@@ -121,6 +123,18 @@ const VerteidigungForm: React.FC<Props> = ({ initialData, onSubmit }) => {
               className="w-full bg-gray-100 rounded p-2 mt-1"
             />
           </div>
+
+          <div>
+          <label className="text-sm text-gray-700">Uhrzeit</label>
+          <input
+            type="time"
+            name="uhrzeit"
+            value={formData.uhrzeit}
+            onChange={handleChange}
+            className="w-full bg-gray-100 rounded p-2 mt-1"
+          />
+        </div>
+
 
           {/* Raum и Art der Arbeit */}
           <div className="flex flex-col md:flex-row gap-6 w-full md:col-span-2">

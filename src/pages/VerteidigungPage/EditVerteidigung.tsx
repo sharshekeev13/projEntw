@@ -4,14 +4,16 @@ const EditVerteidigung = () => {
   const existingData = {
     thema: 'Datenbanken',
     author: 'Azilya',
-    betreuer: 'Frau Gewiniger',
+    betreuer: 'Prof. Mustermann',
     datum: '2025-06-01',
+    uhrzeit: '10:30', 
     raum: 'A401',
     keywords: 'SQL, UI/UX',
     studiengang: 'Informatik',
     fakultät: 'WI',
     artDerArbeit: 'Bachelorarbeit',
   };
+  
 
   return (
     <VerteidigungForm
