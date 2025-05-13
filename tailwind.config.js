@@ -13,6 +13,7 @@ export default {
         primaryLight: '#1C85C8',
         grayText: '#A1A1A1',
         grayOutline: '#E9E9E9',
+        greenColor: '#89BC89'
       },
     },
   },

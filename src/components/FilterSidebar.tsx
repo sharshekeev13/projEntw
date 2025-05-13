@@ -1,5 +1,5 @@
 import React from 'react';
-import ButtonPrimary from '../../../components/ButtonPrimary';
+import ButtonPrimary from './ButtonPrimary';
 import { useState } from 'react';
 
 type FilterSidebarProps = {
@@ -26,6 +26,18 @@ const FilterSidebar: React.FC<FilterSidebarProps> = ({ className = '' }) => {
   return (
   <div className={`bg-white p-4 shadow rounded-md space-y-6 flex flex-col w-full md:w-64 ${className}`}>
     <h2 className="font-bold text-lg text-center">Filters</h2>
+
+    <div className='space-y-2'>
+      <div className="flex items-center gap-2 text-sm">
+        <div className='h-4 w-4 bg-blue-700 rounded-full'></div>
+        <div>Bachelor</div>
+      </div>
+       <div className="flex items-center gap-2 text-sm">
+        <div className='h-4 w-4 bg-green-700 rounded-full'></div>
+        <div>Master</div>
+      </div>
+    </div>
+
 
     <div className="space-y-2">
       <label className="block text-sm font-medium">Datum</label>

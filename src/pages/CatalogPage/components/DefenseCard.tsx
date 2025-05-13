@@ -1,18 +1,14 @@
 import React from 'react';
-
-type Defense = {
-  title: string;
-  date: string;
-  student: string;
-  supervisor: string;
-  room: string;
-  time: string;
-};
+import { Defense } from '../../../types/Defense';
 
 const DefenseCard: React.FC<{ defense: Defense }> = ({ defense }) => (
-  <div className="bg-white rounded shadow p-4 space-y-4 flex flex-col md:flex-row md:justify-between md:items-start">
+  <div className="h-auto bg-white rounded shadow flex p-4 flex-col lg:flex-row lg:justify-between lg:items-start lg:h-48">
+     <div className={
+      `h-4 w-full rounded lg:h-40 mb-4 shadow-lg lg:mb-0 lg:mr-4 lg:w-4 ${
+      defense.typeOfDefense === "Bachelor" ? "bg-blue-700" : "bg-green-700"}`}></div>
     {/* Левая часть */}
-    <div className="flex-1 space-y-2">
+    <div className='flex-1 flex flex-col md:flex-row md:justify-between md:items-start'>
+      <div className="flex-1 space-y-2">
       <div>
         <span className="text-grayText text-sm">Thema:</span>
         <h3 className="font-semibold text-gray-800 text-lg">{defense.title}</h3>
@@ -41,6 +37,7 @@ const DefenseCard: React.FC<{ defense: Defense }> = ({ defense }) => (
         <span className="text-grayText text-sm">Zeit:</span>
         <h6 className="font-semibold text-gray-800 text-sm">{defense.time}</h6>
       </div>
+    </div>
     </div>
   </div>
 );
