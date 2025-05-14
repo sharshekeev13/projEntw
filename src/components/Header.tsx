@@ -98,9 +98,12 @@ const Header: React.FC = () => {
 
       {showAccountModal && (
         <Modal isOpen={showAccountModal} onClose={() => setShowAccountModal(false)}>
-          <UserDaten />
+          <UserDaten onClose={() => setShowAccountModal(false)} />
         </Modal>
       )}
+
+
+
     </header>
   );
 };
