@@ -19,7 +19,9 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/catalog" element={<CatalogPage />} />
-        <Route path="/account" element={<UserDaten />} />
+        <Route path="/account" element={<UserDaten onClose={function (): void {
+          throw new Error('Function not implemented.');
+        } } />} />
         <Route path="/verteidigung-erstellen" element={<CreateVerteidigung />} />
         <Route path="/verteidigung-bearbeiten" element={<EditVerteidigung />} />
         <Route path="/admin" element={<AdminPanelPage />} />
