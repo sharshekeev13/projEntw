@@ -10,7 +10,7 @@ interface UserProps {
 }
 
 const UserCard = ({ name, email, birthDate, imageUrl }: UserProps) => (
-  <div className="min-h-screen bg-white flex items-center justify-center px-4">
+  <div className="h-64 bg-white flex items-center justify-center px-4">
     <div className="w-full max-w-screen-md bg-white rounded-xl border border-gray-200 shadow-xl p-8">
       <button className="text-sm text-gray-600 mb-6 flex items-center gap-2 hover:text-blue-900">
         <span>&larr;</span> Zurück
