@@ -14,6 +14,7 @@ export default {
         grayText: '#A1A1A1',
         grayOutline: '#E9E9E9',
         greenColor: '#89BC89',
+
       },
     },
   },

@@ -1,26 +1,31 @@
 import React from 'react';
 import whzProfil from '../../assets/whzProfil.jpg';
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../context/AuthContext'; // ← импорт useAuth
 
 interface UserProps {
   name: string;
   email: string;
   birthDate: string;
   imageUrl: string;
+  onClose?: () => void;
 }
 
-const UserCard = ({ name, email, birthDate, imageUrl }: UserProps) => (
-  <div className="h-64 bg-white flex items-center justify-center px-4">
-    <div className="w-full max-w-screen-md bg-white rounded-xl border border-gray-200 shadow-xl p-8">
-      <button className="text-sm text-gray-600 mb-6 flex items-center gap-2 hover:text-blue-900">
-        <span>&larr;</span> Zurück
-      </button>
+const UserCard = ({ name, email, birthDate, imageUrl, onClose }: UserProps) => {
+  const { logout } = useAuth(); // ← получаем logout из контекста
 
+  const handleLogout = () => {
+    logout();           // вызываем выход
+    onClose?.();        // закрываем модалку, если нужно
+  };
+
+  return (
+    <div className="w-full max-w-2xl rounded-xl p-6 bg-white">
       <div className="flex flex-col md:flex-row items-center gap-8">
         <img
           src={imageUrl}
           alt="Profile"
-          className="w-48 h-48 object-cover rounded-lg shadow"
+          className="w-40 h-40 object-cover rounded-lg shadow"
         />
         <div className="w-full">
           <p className="text-gray-600 text-sm">Name</p>
@@ -32,35 +37,34 @@ const UserCard = ({ name, email, birthDate, imageUrl }: UserProps) => (
           <p className="text-gray-600 text-sm mt-4">Geburtsdatum</p>
           <p className="font-semibold">{birthDate}</p>
 
-          <div className="flex flex-wrap md:flex-nowrap gap-4 mt-6">
-            <button className="bg-blue-900 text-white px-4 py-2 rounded w-full md:w-auto">
-              Profile bearbeiten
-            </button>
-            <button className="bg-blue-900 text-white px-4 py-2 rounded w-full md:w-auto">
-              Monitor bearbeiten
-            </button>
-            <Link to="/verteidigung-erstellen">
+          <div className="flex flex-wrap gap-4 mt-6">
+            <Link to="/verteidigung-erstellen" onClick={onClose}>
               <button className="bg-blue-900 text-white px-4 py-2 rounded">
                 Verteidigung erstellen
               </button>
             </Link>
+            <button
+              onClick={handleLogout}
+              className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+            >
+              Logout
+            </button>
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
-const UserDaten = () => {
+const UserDaten = ({ onClose }: { onClose: () => void }) => {
   return (
-    <div className="bg-gray-100 min-h-screen">
-      <UserCard
-        name="Ernaz Erkinbekov"
-        email="whz@beispiel.com"
-        birthDate="01/02/2003"
-        imageUrl={whzProfil}
-      />
-    </div>
+    <UserCard
+      name="Ernaz Erkinbekov"
+      email="whz@beispiel.com"
+      birthDate="01/02/2003"
+      imageUrl={whzProfil}
+      onClose={onClose}
+    />
   );
 };
 
