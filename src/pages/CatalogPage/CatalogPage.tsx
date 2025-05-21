@@ -1,81 +1,98 @@
-import { useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import FilterSidebar from "../../components/FilterSidebar";
-import DefenseCard from "./components/DefenseCard";
-import Pagination from "./components/Pagination";
 import FloatingButton from "../../components/FloatingButton";
 import SucheIcon from "../../assets/suche_icon.svg";
 import IconPrimaryButton from "../../components/IconPrimaryButton";
-import Keyboard from "react-simple-keyboard";
-import { KeyboardReactInterface } from "react-simple-keyboard/build/interfaces";
 import "react-simple-keyboard/build/css/index.css";
-import { Keyboard as KeyboardIcon } from "lucide-react";
+import { AppDispatch, RootState } from "../../store";
+import { useDispatch, useSelector } from "react-redux";
+import DefenseCard from "./components/DefenseCard";
+import { fetchPageDefensesThunk } from "../../store/defenses/fetchAllDefensesSlice";
+import Pagination from "./components/Pagination";
 
 function CatalogPage() {
+  const dispatch = useDispatch<AppDispatch>();
+  const role = localStorage.getItem("role");
+  const { defenses, isLoading } = useSelector(
+    (state: RootState) => state.fetchPageDefenses
+  );
+
+  const [filters, setFilters] = useState({
+    page: 1,
+    pageElements: 10,
+    type: "",
+    degreeProgram: "",
+    faculty: "",
+    keywords: [] as string[],
+    from: "",
+    searchString: "",
+    to: "",
+    start: "",
+    end: "",
+  });
+
+  useEffect(() => {
+    dispatch(
+      fetchPageDefensesThunk({
+        page: filters.page,
+        pageElements: filters.pageElements,
+        type: filters.type,
+        degreeProgram: filters.degreeProgram,
+        faculty: filters.faculty,
+        keywords: filters.keywords,
+        searchString: filters.searchString,
+        from: filters.from,
+        to: filters.to,
+        start: filters.start,
+        end: filters.end,
+      })
+    );
+  }, [dispatch, filters]);
+
   const [showFilters, setShowFilters] = useState(false);
-  const [showKeyboard, setShowKeyboard] = useState(false);
-  const [input, setInput] = useState("");
-  const [layoutName, setLayoutName] = useState<"default" | "shift">("default");
-  const keyboardRef = useRef<KeyboardReactInterface | null>(null);
+  const [searchString, setSearchString] = useState("");
+  const [draftFilters, setDraftFilters] = useState(filters);
+  const [page, setPage] = useState(1);
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/verteidigung-erstellen");
+    navigate("/verteidigung");
   };
-
-  const handleChange = (value: string) => {
-    setInput(value);
-  };
-
-  const handleKeyPress = (button: string) => {
-    if (button === "{shift}" || button === "{lock}") {
-      setLayoutName((prev) => (prev === "default" ? "shift" : "default"));
-    }
-  };
-
-  const sampleDefenses = [
-    {
-      title:
-        "Experimentelle Untersuchungen der Schärfentiefe von digitalen Hologrammen",
-      date: "15.02.2025",
-      student: "Tomke Bremerbach",
-      supervisor: "Prof. Hausmann",
-      room: "GAB 344",
-      time: "10:00",
-    },
-    // можно добавить ещё
-  ];
 
   return (
     <div className="bg-gray-50 min-h-screen px-4 py-2">
       <main className="max-w-screen-xl mx-auto py-4 flex flex-col md:flex-row gap-6 items-start">
         {/* Desktop Sidebar */}
         <div className="hidden md:block">
-          <FilterSidebar />
+          <FilterSidebar
+            filters={filters}
+            draftFilters={draftFilters}
+            setDraftFilters={setDraftFilters}
+            onApply={() => setFilters(draftFilters)}
+          />
         </div>
 
         {/* Content */}
-        <div className="flex-1 space-y-4">
+        <div className="flex-1 space-y-4 w-full">
           {/* Search */}
-          <div className="flex flex-row bg-white border border-gray-300 rounded-md shadow-sm px-1 py-1 gap-2">
+          <div className=" w- full flex flex-row bg-white border border-gray-300 rounded-md shadow-sm px-1 py-1 gap-2">
             <div className="flex items-center px-2">
               <img src={SucheIcon} alt="" className="w-5" />
             </div>
             <input
               type="text"
               placeholder="Suche..."
+              value={searchString}
+              onChange={(e) => setSearchString(e.target.value)}
               className="px-3 py-1 rounded w-full outline-none"
-              value={input}
-              onChange={(e) => {
-                setInput(e.target.value);
-                keyboardRef.current?.setInput(e.target.value);
-              }}
-              onFocus={() => keyboardRef.current?.setInput(input)}
             />
-            <button onClick={() => setShowKeyboard((prev) => !prev)}>
-              <KeyboardIcon className="w-6 h-6 mr-4 text-gray-500" />
-            </button>
-            <IconPrimaryButton onClick={() => {}} />
+
+            <IconPrimaryButton
+              onClick={() => {
+                setFilters({ ...filters, searchString });
+              }}
+            />
           </div>
 
           {/* Mobile Filter Toggle */}
@@ -86,76 +103,40 @@ function CatalogPage() {
             >
               {showFilters ? "Filter ausblenden" : "Filter anzeigen"}
             </button>
-            {showFilters && <FilterSidebar />}
-          </div>
-
-          {/* Keyboard */}
-          {showKeyboard && (
-            <div className="space-y-4">
-              <Keyboard
-                keyboardRef={(r) => (keyboardRef.current = r)}
-                layoutName={layoutName}
-                onChange={handleChange}
-                onKeyPress={handleKeyPress}
-                layout={{
-                  default: [
-                    "^ 1 2 3 4 5 6 7 8 9 0 ß ´ {bksp}",
-                    "q w e r t z u i o p ü + #",
-                    "a s d f g h j k l ö ä {enter}",
-                    "{shift} y x c v b n m , . - {shift}",
-                    "{space}",
-                  ],
-                  shift: [
-                    '° ! " § $ % & / ( ) = ? ` {bksp}',
-                    "Q W E R T Z U I O P Ü * '",
-                    "A S D F G H J K L Ö Ä {enter}",
-                    "{shift} Y X C V B N M ; : _ {shift}",
-                    "{space}",
-                  ],
-                }}
-                display={{
-                  "{bksp}": "⌫",
-                  "{enter}": "⏎",
-                  "{shift}": "⇧",
-                  "{space}": "␣",
-                }}
-                theme="hg-theme-default"
-                buttonTheme={[
-                  {
-                    class:
-                      "bg-gray-100 text-black hover:bg-gray-200 rounded px-1 py-1",
-                    buttons:
-                      "1 2 3 4 5 6 7 8 9 0 q w e r t z u i o p a s d f g h j k l y x c v b n m",
-                  },
-                  {
-                    class: "bg-blue-500 text-black hover:bg-blue-600 rounded",
-                    buttons: "{enter} {shift} {bksp}",
-                  },
-                  {
-                    class: "bg-gray-300 text-black px-4",
-                    buttons: "{space}",
-                  },
-                ]}
+            {showFilters && (
+              <FilterSidebar
+                filters={filters}
+                draftFilters={draftFilters}
+                setDraftFilters={setDraftFilters}
+                onApply={() => setFilters(draftFilters)}
               />
-            </div>
-          )}
+            )}
+          </div>
 
           {/* Defense Cards */}
           <div className="bg-white border border-gray-200 rounded-md shadow-sm p-4">
             <div className="space-y-4">
-              {sampleDefenses.map((defense, idx) => (
+              {defenses.content.map((defense, idx) => (
                 <DefenseCard key={idx} defense={defense} />
               ))}
             </div>
             <Pagination
-              currentPage={1}
-              totalPages={5}
-              onPageChange={(page) => console.log(page)}
+              currentPage={page}
+              totalPages={defenses.totalPages}
+              onPageChange={(page) => {
+                setPage(page);
+                setFilters({ ...filters, page });
+              }}
             />
           </div>
+          {isLoading && (
+            <div className="flex justify-center items-center h-32">
+              <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+            </div>
+          )}
         </div>
       </main>
-      <FloatingButton onClick={handleClick} />
+      {role === "admin" && <FloatingButton onClick={handleClick} />}
     </div>
   );
 }

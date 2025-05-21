@@ -1,15 +1,15 @@
-import FindComponent from "../../../components/FindComponent";
+import FindComponent from "../../../../components/FindComponent";
 import UserCardComponent from "./UserCardComponent";
-import Pagination from "../../CatalogPage/components/Pagination";
+import Pagination from "../../../CatalogPage/components/Pagination";
 import UserCreateModal from "./UserCreateModal";
 import { useState } from "react";
-import FloatingButton from "../../../components/FloatingButton";
+import FloatingButton from "../../../../components/FloatingButton";
 import UserUpdateComponent from "./UserUpdateComponent";
-import { User } from "../../../types/User";
+import { User } from "../../../../types/User";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../store";
-import { fetchAllUsersThunk } from "../../../store/users/fetchAllUsersSlice";
+import { AppDispatch, RootState } from "../../../../store";
+import { fetchAllUsersThunk } from "../../../../store/users/fetchAllUsersSlice";
 
 function UserTableComponent() {
   const [isModalOpen, setIsModalOpen] = useState(false);

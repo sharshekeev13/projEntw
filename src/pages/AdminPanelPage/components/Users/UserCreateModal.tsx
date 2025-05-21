@@ -2,8 +2,8 @@ import { User as UserIcon, Lock } from "lucide-react";
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import { useDispatch } from "react-redux";
-import { createUserThunk } from "../../../store/users/createUserSlice";
-import type { AppDispatch } from "../../../store";
+import { createUserThunk } from "../../../../store/users/createUserSlice";
+import type { AppDispatch } from "../../../../store";
 import toast from "react-hot-toast";
 
 const UserCreateModal = ({ onClose }: { onClose: () => void }) => {

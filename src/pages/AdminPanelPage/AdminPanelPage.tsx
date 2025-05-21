@@ -1,6 +1,6 @@
-import UserTableComponent from "./components/UserTableComponent";
-import DefenseTableComponent from "./components/DefenseTableComponent";
 import { useState } from "react";
+import UserTableComponent from "./components/Users/UserTableComponent";
+import FacultyTableComponent from "./components/Faculties/FacultyTableComponent";
 
 function AdminPanelPage() {
   const tabs = [
@@ -9,10 +9,10 @@ function AdminPanelPage() {
       label: "Users",
       tabComponent: <UserTableComponent />,
     },
-    {
-      tabName: "defenseTab",
-      label: "Verteidigungen",
-      tabComponent: <DefenseTableComponent />,
+     {
+      tabName: "facultyTab",
+      label: "Fakultät",
+      tabComponent: <FacultyTableComponent />,
     },
   ];
 
