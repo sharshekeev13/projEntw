@@ -1,10 +1,10 @@
 import { User as UserIcon, Lock } from "lucide-react";
-import { User } from "../../../types/User";
+import { User } from "../../../../types/User";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../../store";
-import { updateUserThunk } from "../../../store/users/updateUserSlice";
+import { AppDispatch } from "../../../../store";
+import { updateUserThunk } from "../../../../store/users/updateUserSlice";
 import { useState } from "react";
-import { fetchAllUsersThunk } from "../../../store/users/fetchAllUsersSlice";
+import { fetchAllUsersThunk } from "../../../../store/users/fetchAllUsersSlice";
 
 type Props = {
   user: User;

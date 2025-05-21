@@ -1,7 +1,7 @@
-import React from 'react';
 import whzProfil from '../../assets/whzProfil.jpg';
-import { Link } from 'react-router-dom';
-import { useAuth } from '../../context/AuthContext'; // ← импорт useAuth
+import { useNavigate } from 'react-router-dom';
+import { logout } from '../../store/auth/authSlice';
+import { useDispatch } from 'react-redux';
 
 interface UserProps {
   name: string;
@@ -12,11 +12,14 @@ interface UserProps {
 }
 
 const UserCard = ({ name, email, birthDate, imageUrl, onClose }: UserProps) => {
-  const { logout } = useAuth(); // ← получаем logout из контекста
+  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleLogout = () => {
-    logout();           // вызываем выход
-    onClose?.();        // закрываем модалку, если нужно
+    dispatch(logout());
+    navigate('/')
+    onClose?.();      
   };
 
   return (
@@ -38,11 +41,6 @@ const UserCard = ({ name, email, birthDate, imageUrl, onClose }: UserProps) => {
           <p className="font-semibold">{birthDate}</p>
 
           <div className="flex flex-wrap gap-4 mt-6">
-            <Link to="/verteidigung-erstellen" onClick={onClose}>
-              <button className="bg-blue-900 text-white px-4 py-2 rounded">
-                Verteidigung erstellen
-              </button>
-            </Link>
             <button
               onClick={handleLogout}
               className="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"

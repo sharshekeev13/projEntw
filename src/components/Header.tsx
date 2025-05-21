@@ -2,22 +2,16 @@ import React, { useState } from 'react';
 import Logo from '../assets/logo_whz.svg';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { useAuth } from '../context/AuthContext';
 import LoginModal from '../pages/LoginModal/LoginModal';
 import Modal from '../components/Modal';
 import UserDaten from '../pages/AccountPage/Account';
 
 const Header: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const { user } = useAuth();
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showAccountModal, setShowAccountModal] = useState(false);
+  const userRole = window.localStorage.getItem('role');
 
-  const headerItems = [
-    { label: 'Über uns', href: '/' },
-    { label: 'Verteidigungen', href: '/catalog' },
-    { label: 'Admin', href: '/admin' }, // если не нужен — можно убрать
-  ];
 
   return (
     <header className="w-full shadow-md bg-white border-b border-gray-200">
@@ -29,20 +23,40 @@ const Header: React.FC = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-6 text-sm">
-          {headerItems.map(({ label, href }) => (
-            <Link
-              key={label}
-              to={href}
+          <Link
+              key={"Über uns"}
+              to={"/"}
               className="group relative w-max text-sm"
             >
               <span className="hover:text-primary transition duration-300">
-                {label}
+                {"Über uns"}
               </span>
               <span className="absolute -bottom-1 left-0 w-0 transition-all duration-300 h-0.5 bg-primary group-hover:w-full"></span>
             </Link>
-          ))}
+            <Link
+              key={"Verteidigungen"}
+              to={"/catalog"}
+              className="group relative w-max text-sm"
+            >
+              <span className="hover:text-primary transition duration-300">
+                {"Verteidigungen"}
+              </span>
+              <span className="absolute -bottom-1 left-0 w-0 transition-all duration-300 h-0.5 bg-primary group-hover:w-full"></span>
+            </Link>
+            {userRole === 'admin' && (
+              <Link
+                key={"Admin"}
+                to={"/admin"}
+                className="group relative w-max text-sm"
+              >
+                <span className="hover:text-primary transition duration-300">
+                  {"Admin Panel"}
+                </span>
+                <span className="absolute -bottom-1 left-0 w-0 transition-all duration-300 h-0.5 bg-primary group-hover:w-full"></span>
+              </Link>
+            )}
 
-          {user ? (
+          {userRole ? (
             <button
               onClick={() => setShowAccountModal(true)}
               className="group relative w-max text-sm"
